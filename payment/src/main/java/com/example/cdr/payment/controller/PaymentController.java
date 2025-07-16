@@ -19,9 +19,8 @@ public class PaymentController {
         this.kafkaProducer = kafkaProducer;
     }
     @PostMapping
-    public String sendPayment(@RequestBody Map<String, Object> paymentInput) {
-        System.out.println("Sending payment message: " + paymentInput);
-        kafkaProducer.send(paymentInput);
-        return "message sent: " +paymentInput;
+    public String sendPayment(@RequestBody PaymentMessage message ) {
+        kafkaProducer.send(message);
+        return "message sent: " + message;
     }
 }
